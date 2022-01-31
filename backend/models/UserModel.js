@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    user_image: {
+    image: {
       type: String,
       default: "/uploads/sample.png",
     },
@@ -37,10 +37,10 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
-    access: {
-      type: String,
+    isAdmin: {
+      type: Boolean,
       required: true,
-      default: "user",
+      default: false,
     },
   },
   {

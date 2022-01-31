@@ -14,7 +14,7 @@ const GetUsers = asyncHandler(async (req, res) => {
       .or([{ name: { $regex: re } }])
       .select("-password");
     res.json(owner_staff);
-  } else if (req.user.access === "admin" && req.user.isOwner === false) {
+  } else if (req.user.isAdmin === true && req.user.isOwner === false) {
     const admin_staff = await User.find({ owner: req.user.owner })
       .or([{ name: { $regex: re } }])
       .select("-password");
@@ -51,12 +51,13 @@ const AuthUser = asyncHandler(async (req, res) => {
     res.json({
       _id: user._id,
       name: user.name,
-      user_image: user.user_image,
+      image: user.image,
       role: user.role,
       resthome: user.resthome,
       email: user.email,
+      owner: user.owner,
       isOwner: user.isOwner,
-      access: user.access,
+      isAdmin: user.isAdmin,
       token: Generate_Token(user._id),
     });
   } else {
@@ -69,20 +70,11 @@ const AuthUser = asyncHandler(async (req, res) => {
 // @ROUTE   POST /api/users/owner
 // @ACCESS  PUBLIC
 const RegisterOwner = asyncHandler(async (req, res) => {
-  const { name, user_image, resthome, email, password } = req.body;
+  const { name, image, resthome, email, password } = req.body;
 
-  if (
-    name === "" ||
-    name === null ||
-    resthome === "" ||
-    resthome === null ||
-    email === "" ||
-    email === null ||
-    password === "" ||
-    password === null
-  ) {
+  if (!name || !resthome || !email || !password) {
     res.status(400);
-    throw new Error("Invalid Data. Make sure the fields are NOT empty.");
+    throw new Error("Invalid Data - Check fields");
   }
 
   // CHECK IF USER EMAIL ALL READY EXISTS
@@ -96,25 +88,25 @@ const RegisterOwner = asyncHandler(async (req, res) => {
   // CREATE OWNER
   const owner = await User.create({
     name,
-    user_image,
+    image,
     role: "Care Facility Owner",
     resthome,
     email,
     password,
     isOwner: true,
-    access: "admin",
+    isAdmin: true,
   });
 
   if (owner) {
     res.status(201).json({
       _id: owner._id,
       name: owner.name,
-      user_image: owner.user_image,
+      image: owner.image,
       role: owner.role,
       resthome: owner.resthome,
       email: owner.email,
       isOwner: owner.isOwner,
-      access: owner.access,
+      isAdmin: owner.isAdmin,
       token: Generate_Token(owner._id),
     });
   } else {
@@ -127,25 +119,11 @@ const RegisterOwner = asyncHandler(async (req, res) => {
 // @ROUTE   POST /api/users/staff
 // @ACCESS  PRIVATE / ADMIN
 const RegisterStaff = asyncHandler(async (req, res) => {
-  const { name, user_image, role, resthome, email, password, access } =
-    req.body;
+  const { name, image, role, email, password, isAdmin } = req.body;
 
-  if (
-    name === "" ||
-    name === null ||
-    role === "" ||
-    role === null ||
-    resthome === "" ||
-    resthome === null ||
-    email === "" ||
-    email === null ||
-    password === null ||
-    password === "" ||
-    access === "" ||
-    access === null
-  ) {
+  if (!name || !role || !email || !password) {
     res.status(400);
-    throw new Error("Invalid Owner Data");
+    throw new Error("Invalid Data - Check fields");
   }
 
   // CHECK IF USER EMAIL ALL READY EXISTS
@@ -159,13 +137,13 @@ const RegisterStaff = asyncHandler(async (req, res) => {
   if (req.user.isOwner === true) {
     const new_staff = await User.create({
       name,
-      user_image,
+      image,
       role,
-      resthome,
+      resthome: req.user.resthome,
       email,
       password,
       owner: req.user._id,
-      access,
+      isAdmin,
     });
 
     const staff = await new_staff.save();
@@ -173,13 +151,13 @@ const RegisterStaff = asyncHandler(async (req, res) => {
   } else if (req.user.isAdmin === true && req.user.isOwner === false) {
     const new_staff = await User.create({
       name,
-      user_image,
+      image,
       role,
-      resthome,
+      resthome: req.user.resthome,
       email,
       password,
       owner: req.user.owner,
-      access,
+      isAdmin,
     });
 
     const staff = await new_staff.save();
@@ -198,26 +176,25 @@ const UpdateUser = asyncHandler(async (req, res) => {
 
   if (user) {
     user.name = req.body.name || user.name;
-    user.user_image = req.body.user_image || user.user_image;
+    user.image = req.body.image || user.image;
     user.role = req.body.role || user.role;
-    user.resthome = req.body.resthome || user.resthome;
     user.email = req.body.email || user.email;
     if (req.body.password) {
       user.password = req.body.password;
     }
-    user.access = req.body.access || user.access;
+    user.isAdmin = req.body.isAdmin || user.isAdmin;
 
     const updatedUser = await user.save();
 
     res.json({
       _id: updatedUser._id,
       name: updatedUser.name,
-      user_image: updatedUser.user_image,
+      image: updatedUser.image,
       role: updatedUser.role,
       resthome: updatedUser.resthome,
       email: updatedUser.email,
       role: updatedUser.role,
-      access: updatedUser.access,
+      isAdmin: updatedUser.isAdmin,
     });
   } else {
     res.status(404);
