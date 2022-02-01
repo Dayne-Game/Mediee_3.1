@@ -1,0 +1,564 @@
+/* DAYNE GAME FRONT-END FRAMEWORK */
+/* ALL RIGHTS BELONG TO DAYNE GAME */
+/* AND THE MEDIEE COPORATION */
+
+/* Importing main Font for Website */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  background: #f4f4f4;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  color: #333 !important;
+}
+
+::placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder {
+  color: red !important;
+}
+
+.container {
+  width: 960px;
+  margin: auto;
+}
+
+/* Tables CSS For Users, and Other things */
+table {
+  background: #ffffff;
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+td,
+th {
+  padding: 8px;
+}
+
+tbody {
+  border: 0.5px solid #f4f4f4;
+}
+
+th {
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #f6f6f6;
+  font-weight: 500;
+  color: #555;
+  text-transform: uppercase;
+
+  color: rgba(107, 114, 128, 1);
+  font-size: 14px;
+
+  border: 0.5px solid #f4f4f4;
+}
+
+tr {
+  border-bottom: 0.5px solid #f4f4f4;
+}
+
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+}
+
+tbody,
+tr:last-child td:first-child {
+  border-bottom-left-radius: 30px;
+}
+tbody,
+tr:last-child td:last-child {
+  border-bottom-right-radius: 30px;
+}
+
+.line-one {
+  display: block;
+}
+
+.line-two {
+  color: rgba(107, 114, 128, 1);
+}
+
+.table-profile-image {
+  float: left;
+  margin-right: 10px;
+
+  height: 40px;
+  width: 40px;
+
+  border-radius: 100%;
+
+  object-fit: cover;
+}
+
+.role {
+  padding: 2px 8px 2px 8px;
+  border-radius: 25px;
+}
+
+.role.admin {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.card {
+  height: 300px;
+  width: 240px;
+
+  border-radius: 25px;
+  border: 1px solid #333;
+}
+
+.navbar {
+  width: 100%;
+  background: #000;
+  height: 50px;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+}
+
+.navbar h2 {
+  font-weight: 600;
+  padding: 0px 10px;
+}
+
+.user-info {
+  height: 100%;
+  font-weight: 400;
+
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+
+  color: white;
+  text-decoration: none;
+}
+
+.profile-image {
+  height: 35px;
+  width: 35px;
+  border-radius: 100%;
+
+  float: right;
+}
+
+.username {
+  margin-right: 10px;
+  float: left;
+}
+
+.main-container {
+  width: calc(100% - 250px);
+  height: 20000px;
+
+  margin-top: 166px;
+  background: #fff;
+  float: right;
+}
+
+.logout {
+  position: absolute;
+  bottom: 120px;
+
+  width: 250px;
+}
+
+.titlebox {
+  width: 100%;
+  height: 70px;
+  padding: 20px 30px;
+
+  border-bottom: 1px solid #eee;
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+
+  position: fixed;
+  top: 50px;
+  left: 0;
+}
+
+.titlebox h2 {
+  font-weight: 500;
+}
+
+.title-bar-icons {
+  height: 60px;
+  width: 60px;
+}
+
+.sidebar {
+  width: 250px;
+  height: 100%;
+  border-right: 1px solid #eee;
+  background: #fff;
+
+  position: fixed;
+  top: 120px;
+  left: 0;
+
+  overflow-x: hidden;
+}
+
+.sidebar a {
+  padding: 13px 30px;
+  text-decoration: none;
+
+  color: #333;
+
+  display: block;
+
+  border-left: 1px solid transparent;
+}
+
+.sidebar a:hover,
+.active {
+  background: #eee;
+  color: #777;
+}
+
+.active {
+  border-left: 4px solid #333 !important;
+  background: #f1f1f1;
+}
+
+.form-container {
+  width: 500px;
+  margin: 0px auto;
+
+  margin-top: 80px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+input:focus {
+  outline: 0px solid transparent;
+}
+
+.form-input {
+  width: 100%;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 10px 15px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  font-size: 16px;
+  background: #fff;
+}
+
+.form-title-box {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-title {
+  font-weight: bold;
+  font-size: 30px;
+}
+input[type="file"] {
+  display: none;
+}
+
+.profile-upload {
+  display: inline-block;
+  cursor: pointer;
+  color: rgba(107, 114, 128, 1);
+}
+
+.profile-upload:hover {
+  background: #eee;
+}
+
+.upload-input {
+  display: block !important;
+  width: 492px !important;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.icon-text {
+  margin-left: 5px;
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  color: #333;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #333;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.form-button {
+  width: 50%;
+  padding: 13px;
+  background: #333;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  border: 1px solid #333;
+  margin-top: 10px;
+  cursor: pointer;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.form-button:hover {
+  background: #000;
+  border: 1px solid #eee;
+  color: #fff;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+
+.alert .alert-link {
+  font-weight: bold;
+}
+
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+
+.alert > p + p {
+  margin-top: 5px;
+}
+
+.alert-dismissable,
+.alert-dismissible {
+  padding-right: 35px;
+}
+
+.alert-dismissable .close,
+.alert-dismissible .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+
+.alert-success hr {
+  border-top-color: #c9e2b3;
+}
+
+.alert-success .alert-link {
+  color: #2b542c;
+}
+
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+
+.alert-info hr {
+  border-top-color: #a6e1ec;
+}
+
+.alert-info .alert-link {
+  color: #245269;
+}
+
+.alert-warning {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}
+
+.alert-warning hr {
+  border-top-color: #f7e1b5;
+}
+
+.alert-warning .alert-link {
+  color: #66512c;
+}
+
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+
+.alert-danger hr {
+  border-top-color: #e4b9c0;
+}
+
+.alert-danger .alert-link {
+  color: #843534;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid var(--mediee-red);
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.upload-input {
+  display: block !important;
+}
+
+.upload-input > label {
+  padding-left: 5px;
+}
+
+.button-box {
+  display: flex;
+  align-items: center;
+
+  position: fixed;
+  top: 120px;
+  left: 250px;
+  width: calc(100% - 250px);
+  height: 46px;
+  border-bottom: 1px solid #eee;
+  padding-right: 10px;
+  padding-left: 10px;
+  background: #fff;
+}
+
+.btn {
+  padding: 7px 12px;
+  /* background: #eee; */
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  color: #333;
+  
+
+  border: 0px;
+}
+
+.btn.btn-box {
+  height: 100% !important;
+}
+
+.btn:hover {
+  background: #f1f1f1;
+}
+
+.btn-icon-text {
+  margin-left: 2px !important;
+  margin-right: 2px !important;
+}
